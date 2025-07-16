@@ -7,10 +7,9 @@ import streamlit as st
 
 config_file = PROJECT_DIRECTORY / 'shared_utils' / 'database.ini'
 config_section_test = 'postgresql_test'
-# config_section_prod_admin = 'postgresql_prod_admin'
-# config_section_prod_readonly = "postgresql_prod_readonly"
 config_section_prod_admin = 'postgresql_prod_admin'
-config_section_prod_readonly = 'postgresql_prod_readonly'
+config_section_prod_readonly = "postgresql_prod_readonly"
+
 
 
 class PostgreSQL:
@@ -28,9 +27,8 @@ class PostgreSQL:
     def _connect(self):
         connection = None
         try:
-            # params = config_parse(self.config_file, self.section_name)
-            params = st.secrets[self.section_name]
-            
+            params = config_parse(self.config_file, self.section_name)
+                        
             # print('Connecting to PostgreSQL Database')
             connection = pg2.connect(**params)
             return connection
